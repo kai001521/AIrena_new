@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AIrena - Checkers</title>
+    <link rel="stylesheet" href="checkers.css">
+</head>
+<body>
+
+<audio id="bgMusic" loop preload="auto">
+  <source src="checkers.mp3" type="audio/mpeg">
+</audio>
+
+<button id="muteBtn" class="mute-btn" onclick="toggleMusic()">
+    <svg id="audioIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+    </svg>
+</button>
+
+<canvas id="particles"></canvas>
+
+<div class="container">
+    <h1 class="title">CHECKERS</h1>
+
+    <div id="modeScreen" class="glassPanel">
+        <h2>Select Game Mode</h2>
+        <button class="rules-btn" onclick="showRules()">How to Play</button>
+        <button onclick="goNaming()">Player vs Player</button>
+        <button onclick="showDifficulty()">Vs AI</button>
+    </div>
+
+    <div id="difficultyScreen" class="glassPanel" style="display:none;">
+        <h2>Select Difficulty</h2>
+        <button onclick="startAI('easy')">Easy</button>
+        <button onclick="startAI('medium')">Medium</button>
+        <button onclick="startAI('hard')">Hard</button>
+    </div>
+
+    <div id="namingScreen" class="glassPanel" style="display:none;">
+        <h2>Enter Player Names</h2>
+        <input id="p1" placeholder="Player 1">
+        <input id="p2" placeholder="Player 2">
+        <button onclick="startGame()">Start Game</button>
+    </div>
+
+    <div id="gameUI" style="display:none; width: 100%;">
+        <div class="hudPanel">
+            <div class="playerRow">
+                <div class="playerName active" id="playerRed">
+                    <span id="nameRed">Red</span>
+                    <b id="redScore">12</b>
+                </div>
+                <span class="vsText">VS</span>
+                <div class="playerName" id="playerWhite">
+                    <span id="nameWhite">White</span>
+                    <b id="whiteScore">12</b>
+                </div>
+            </div>
+        </div>
+        
+        <div class="boardWrap">
+            <div class="boardContainer">
+                <div id="board"></div>
+            </div>
+        </div>
+        
+        <button class="restartBtn" onclick="buildBoard()">Restart Match</button>
+    </div>
+
+    <button class="backBtn" onclick="goBack()">← Back</button>
+</div>
+
+<div id="rulesPopup" class="popup-backdrop">
+  <div class="popup-card">
+    <h3 class="popup-title">How to Play</h3>
+    <ul class="rules-list">
+      <li>Pieces move <b>diagonally forward</b>.</li>
+      <li><b>Jump over</b> an opponent piece to capture it.</li>
+      <li>Reach the last row to become a <b>King</b> (moves both directions).</li>
+      <li>Win by <b>capturing or blocking</b> all opponent pieces.</li>
+    </ul>
+    <button class="rules-got-it" onclick="hideRules()">Got it!</button>
+  </div>
+</div>
+
+<div id="winPopup" class="popup-backdrop">
+  <div class="popup-card" style="min-height: 200px; justify-content: center; gap: 15px;">
+    <h2 id="winnerText" class="popup-title" style="margin-bottom: 5px !important; font-size: 28px;"></h2>
+    <div id="winPieceDisplay" class="piece winPiece"></div>
+    <div style="display: flex; gap: 10px; width: 100%; flex-direction: column;">
+        <button onclick="restartGame()">Play Again</button>
+        <button onclick="goMenu()" style="background: linear-gradient(135deg, #4a0000, #2a0000); box-shadow: 0 0 15px rgba(74, 0, 0, 0.4);">Menu</button>
+    </div>
+  </div>
+</div>
+
+<script src="checkers.js"></script>
+</body>
+</html>

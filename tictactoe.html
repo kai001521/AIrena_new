@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Tic Tac Toe</title>
+
+<link rel="stylesheet" href="tictactoe.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<audio id="bgMusic" loop preload="auto">
+  <source src="tictactoe.mp3" type="audio/mpeg">
+</audio>
+
+<button id="muteBtn" class="mute-btn" onclick="toggleMusic()">
+    <svg id="audioIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+    </svg>
+</button>
+
+<canvas id="bgParticles"></canvas>
+
+<div class="topbar">
+<button id="backBtn" class="back" onclick="goBack()">← Back</button>
+</div>
+
+<h1 class="title">Tic Tac Toe</h1>
+
+<div id="screenMode" class="card">
+<h3>Select Game Mode</h3>
+<button class="rules-btn" onclick="showRules()">How to Play</button>
+<button onclick="selectMode('pvp')">Player vs Player</button>
+<button onclick="selectMode('ai')">Player vs AI</button>
+</div>
+
+<div id="screenDifficulty" class="card hidden">
+<h3>AI Difficulty</h3>
+<button onclick="setDifficulty('easy')">Easy</button>
+<button onclick="setDifficulty('medium')">Medium</button>
+<button onclick="setDifficulty('hard')">Hard</button>
+<button onclick="setDifficulty('hell')">Hell</button>
+</div>
+
+<div id="screenSize" class="card hidden">
+<h3>Board Size</h3>
+<button onclick="setSize(3)">3 × 3</button>
+<button onclick="setSize(4)">4 × 4</button>
+<button onclick="setSize(5)">5 × 5</button>
+</div>
+
+<div id="screenNames" class="card hidden">
+<h3>Enter Players</h3>
+<input id="nameX" placeholder="Player X">
+<input id="nameO" placeholder="Player O">
+<button onclick="saveNames()">Start Match</button>
+</div>
+
+<div id="screenGame" class="card hidden">
+
+<div class="gameBox">
+
+<div class="scoreBoard">
+<div class="playerCard" id="cardX">
+<span id="labelX">Player X</span>
+<span id="scoreX" class="scoreNum">0</span>
+</div>
+<div class="vs">VS</div>
+<div class="playerCard" id="cardO">
+<span id="labelO">Player O</span>
+<span id="scoreO" class="scoreNum">0</span>
+</div>
+</div>
+
+<p id="status" class="statusText"></p>
+
+<div id="boardWrap">
+<canvas id="winLine"></canvas>
+<div id="board"></div>
+</div>
+
+<button class="restart" onclick="resetMatch()">Restart Match</button>
+
+</div>
+</div>
+
+<div id="rulesPopup" class="popup-backdrop">
+  <div class="popup-card">
+    <h3 class="popup-title">How to Play</h3>
+    <ul class="rules-list">
+      <li>Players take turns placing <b>X</b> or <b>O</b> on the grid.</li>
+      <li>First to make <b>3 in a row</b> (horizontal, vertical, or diagonal) wins.</li>
+      <li>First to make <b>4 in a row</b> (horizontal, vertical, or diagonal) <i>only in 4x4 or 5x5</i> wins.</li>
+      <li>If the board fills with no winner, it is a draw.</li>
+    </ul>
+    <button class="rules-got-it" onclick="hideRules()">Got it!</button>
+  </div>
+</div>
+
+<div id="winPopup" class="popup-backdrop">
+  <div class="popup-card" style="min-height: 180px; justify-content: center;">
+    <h2 id="winMessage" class="title"></h2>
+  </div>
+</div>
+
+<script src="tictactoe.js"></script>
+</body>
+</html>

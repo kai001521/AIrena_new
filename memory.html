@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Memory Game - AIrena</title>
+<link rel="stylesheet" href="memory.css">
+</head>
+
+<body class="memoryTheme">
+
+<audio id="bgMusic" loop preload="auto">
+  <source src="memory card.mp3" type="audio/mpeg">
+</audio>
+
+<button id="muteBtn" class="mute-btn" onclick="toggleMusic()">
+    <svg id="audioIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+    </svg>
+</button>
+
+<canvas id="particles"></canvas>
+<button id="backBtn" class="backBtn" onclick="goBack()">← Back</button>
+
+<h1 class="titleGlow">Memory Game</h1>
+
+<div id="menuPanel" class="panel">
+
+<p class="sub">Select Game Mode</p>
+
+<div id="modeScreen" class="screen active">
+<button class="rules-btn" onclick="showRules()">How to Play</button>
+<button class="modeBtn" data-mode="ai">Player vs AI</button>
+<button class="modeBtn" data-mode="pvp">Player vs Player</button>
+</div>
+
+<div id="sizeScreen" class="screen">
+<button class="sizeBtn" data-size="4">4 x 4</button>
+<button class="sizeBtn" data-size="6">6 x 6</button>
+</div>
+
+<div id="nameScreen" class="screen">
+<input id="p1" placeholder="Player 1 Name">
+<input id="p2" placeholder="Player 2 Name">
+<button id="startBtn">Start Game</button>
+</div>
+
+<div id="difficultyScreen" class="screen">
+<button class="diffBtn" data-diff="easy">Easy</button>
+<button class="diffBtn" data-diff="medium">Medium</button>
+<button class="diffBtn" data-diff="hard">Hard</button>
+</div>
+
+</div>
+
+<div id="gameScreen" class="screen">
+<div class="panel">
+
+<div class="scoreBar">
+<span id="p1Score" class="playerBox">Player: 0</span>
+<span class="vs">VS</span>
+<span id="p2Score" class="playerBox">Computer: 0</span>
+</div>
+
+<div class="board" id="board"></div>
+<button id="restartBtn" class="restartBtn">Restart Match</button>
+
+</div>
+</div>
+
+<div id="rulesPopup" class="popup-backdrop">
+  <div class="popup-card">
+    <h3 class="popup-title">How to Play</h3>
+    <ul class="rules-list">
+      <li>Tap two cards to flip them.</li>
+      <li>If they match, they stay open.</li>
+      <li>If not, they flip back.</li>
+      <li>Match all pairs to finish the game.</li>
+    </ul>
+    <button class="rules-got-it" onclick="hideRules()">Got it!</button>
+  </div>
+</div>
+
+<div id="winPopup" class="popup-backdrop">
+  <div class="popup-card" style="min-height: 200px; justify-content: center; gap: 15px;">
+    <h2 id="winnerText" class="popup-title" style="margin-bottom: 5px !important;"></h2>
+    <div style="display: flex; gap: 10px; width: 100%; flex-direction: column;">
+        <button id="playAgain">Play Again</button>
+        <button id="menuBtn" style="background: linear-gradient(135deg, #114e2c, #0a351c); box-shadow: 0 0 15px rgba(17, 78, 44, 0.4);">Menu</button>
+    </div>
+  </div>
+</div>
+
+<script src="memory.js"></script>
+</body>
+</html>

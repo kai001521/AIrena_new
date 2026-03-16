@@ -1,0 +1,206 @@
+/* ===== GLOBAL RESET & FONTS ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    /* Deep space background to make the glass pop */
+    background: linear-gradient(-45deg, #05050a, #0a0f2c, #16082b, #051622);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    color: #ffffff;
+}
+
+/* Background Animation */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Particle Canvas */
+#particle-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* ===== TRUE GLASSMORPHISM PANEL ===== */
+.glass-container {
+    width: 90%;
+    max-width: 420px;
+    min-height: 560px;
+    /* Extremely transparent white */
+    background: rgba(255, 255, 255, 0.03); 
+    /* Heavy frost effect */
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-radius: 24px;
+    /* Simulate glass edge reflection */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    border-left: 1px solid rgba(255, 255, 255, 0.25);
+    /* Soft shadow to lift it off the background */
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.05);
+    padding: 40px 30px;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* ===== TYPOGRAPHY ===== */
+.brand-title {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, #00e5ff, #b53cff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 4px 10px rgba(0, 229, 255, 0.3));
+}
+
+.subtitle {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.95rem;
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+}
+
+/* ===== TOGGLE SLIDER (Glass Style) ===== */
+.button-box {
+    width: 240px;
+    margin: 0 auto 40px auto;
+    position: relative;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.05); /* Transparent track */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    box-shadow: inset 0 4px 6px rgba(0,0,0,0.3);
+}
+
+.toggle-btn {
+    flex: 1;
+    padding: 12px 0;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    outline: none;
+    position: relative;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-align: center;
+    z-index: 2;
+    transition: color 0.3s;
+}
+
+#btn-slide {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: calc(50% - 4px);
+    height: calc(100% - 8px);
+    background: linear-gradient(135deg, #00e5ff, #0088ff);
+    border-radius: 30px;
+    transition: left 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    box-shadow: 0 4px 12px rgba(0, 229, 255, 0.4);
+    z-index: 1;
+}
+
+/* ===== FORM SLIDER ===== */
+.form-slider {
+    position: relative;
+    width: 100%;
+    height: 300px;
+}
+
+.input-group {
+    position: absolute;
+    width: 100%;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#login-form {
+    transform: translateX(0);
+}
+
+#register-form {
+    transform: translateX(150%);
+}
+
+/* ===== GLASS INPUT FIELDS ===== */
+.input-field {
+    width: 100%;
+    padding: 14px 20px;
+    margin: 10px 0;
+    background: rgba(0, 0, 0, 0.15); /* Dark transparent core */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.2); /* Edge light */
+    border-radius: 12px;
+    outline: none;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.input-field::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.input-field:focus {
+    background: rgba(0, 0, 0, 0.3);
+    border-color: #00e5ff;
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.2), inset 0 2px 4px rgba(0,0,0,0.4);
+    transform: translateY(-1px);
+}
+
+/* ===== NEON SUBMIT BUTTON ===== */
+.submit-btn {
+    width: 100%;
+    padding: 14px;
+    margin-top: 25px;
+    background: linear-gradient(135deg, #b53cff, #7c4dff);
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(124, 77, 255, 0.4);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(124, 77, 255, 0.6);
+    background: linear-gradient(135deg, #c45eff, #8a5eff);
+}
+
+.submit-btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 4px 10px rgba(124, 77, 255, 0.4);
+}

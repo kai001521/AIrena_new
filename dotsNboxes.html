@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Dots & Boxes - AIrena</title>
+<link rel="stylesheet" href="dotsNboxes.css">
+</head>
+<body>
+
+<audio id="bgMusic" loop preload="auto">
+  <source src="dotsNboxes.mp3" type="audio/mpeg">
+</audio>
+
+<button id="muteBtn" class="mute-btn" onclick="toggleMusic()">
+    <svg id="audioIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+    </svg>
+</button>
+
+<canvas id="particles"></canvas>
+<button class="backBtn" onclick="handleBack()">← Back</button>
+
+<div id="modeScreen" class="menuContainer">
+  <h1 class="title">Dots & Boxes</h1>
+  <div class="panel">
+    <p class="sub">Select Game Mode</p>
+    <button class="rules-btn" onclick="showRules()">How to Play</button>
+    <button class="menuBtn" onclick="chooseGrid('pvp')">Player vs Player</button>
+    <button class="menuBtn" onclick="openAiMenu()">Player vs AI</button>
+  </div>
+</div>
+
+<div id="aiMenu" class="menuContainer hidden">
+  <h1 class="title">Select AI Difficulty</h1>
+  <div class="panel">
+    <button class="menuBtn" onclick="chooseGrid('easy')">Easy</button>
+    <button class="menuBtn" onclick="chooseGrid('medium')">Medium</button>
+    <button class="menuBtn" onclick="chooseGrid('hard')">Hard</button>
+  </div>
+</div>
+
+<div id="gridMenu" class="menuContainer hidden">
+  <h1 class="title">Select Board Size</h1>
+  <div class="panel">
+    <button class="menuBtn" onclick="startSizedGame(3)">Small (3 × 3)</button>
+    <button class="menuBtn" onclick="startSizedGame(4)">Medium (4 × 4)</button>
+    <button class="menuBtn" onclick="startSizedGame(5)">Large (5 × 5)</button>
+  </div>
+</div>
+
+<div id="nameMenu" class="menuContainer hidden">
+  <h1 class="title">Enter Players</h1>
+  <div class="panel">
+    <input id="name1" class="nameInput" placeholder="Player 1 Name">
+    <input id="name2" class="nameInput" placeholder="Player 2 Name">
+    <button class="menuBtn actionBtn" onclick="startGameWithNames()">Start Match</button>
+  </div>
+</div>
+
+<div id="gameScreen" class="gameScreen hidden">
+  <h1 class="title">Dots & Boxes</h1>
+
+  <div class="scoreBar">
+    <div id="p1Card" class="playerBox active">
+      <div class="playerName">Player 1 <span style="color:#d8b4fe;">@</span></div>
+      <div id="p1" class="scoreValue">0</div>
+    </div>
+
+    <div id="turn" class="turnIndicator">Player 1's Turn</div>
+
+    <div id="p2Card" class="playerBox">
+      <div class="playerName">Player 2 <span style="color:#fff;">#</span></div>
+      <div id="p2" class="scoreValue">0</div>
+    </div>
+  </div>
+
+  <div id="gameBoard"></div>
+</div>
+
+<div id="rulesPopup" class="popup-backdrop">
+  <div class="popup-card">
+    <h3 class="popup-title">How to Play</h3>
+    <ul class="rules-list">
+      <li>Players draw <b>one line</b> between two dots.</li>
+      <li>Completing a square earns a <b>point</b> and another turn.</li>
+      <li>When the grid is full, the player with the <b>most boxes</b> wins.</li>
+    </ul>
+    <button class="rules-got-it" onclick="hideRules()">Got it!</button>
+  </div>
+</div>
+
+<div id="winPopup" class="popup-backdrop">
+  <div class="popup-card" style="min-height: 200px; justify-content: center; gap: 15px;">
+    <h2 id="winText" class="popup-title" style="margin-bottom: 5px !important; font-size: 28px;"></h2>
+    <div style="display: flex; gap: 10px; width: 100%; flex-direction: column; margin-top: 15px;">
+        <button onclick="restartGame()">Play Again</button>
+        <button onclick="backToMenu()" style="background: linear-gradient(135deg, #4c1d95, #3b0764); box-shadow: 0 0 15px rgba(76, 29, 149, 0.4);">Menu</button>
+    </div>
+  </div>
+</div>
+
+<script src="dotsNboxes.js"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to AIrena</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <canvas id="particle-canvas"></canvas>
+    
+    <div class="glass-container">
+        <div class="form-box">
+            <h1 class="brand-title">AIrena</h1>
+            
+            <div class="button-box">
+                <div id="btn-slide"></div>
+                <button type="button" class="toggle-btn" onclick="showLogin()">Log In</button>
+                <button type="button" class="toggle-btn" onclick="showRegister()">Register</button>
+            </div>
+
+            <div class="form-slider">
+                <form id="login-form" class="input-group">
+                    <p class="subtitle">Enter the arena.</p>
+                    <input type="text" class="input-field" placeholder="Player Name" required>
+                    <input type="password" class="input-field" placeholder="Password" required>
+                    <button type="submit" class="submit-btn">Start Game</button>
+                </form>
+
+                <form id="register-form" class="input-group">
+                    <p class="subtitle">Create your player profile.</p>
+                    <input type="text" class="input-field" placeholder="Player Name" required>
+                    <input type="email" class="input-field" placeholder="Email ID" required>
+                    <input type="password" class="input-field" placeholder="Password" required>
+                    <button type="submit" class="submit-btn">Join AIrena</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="login.js"></script>
+</body>
+</html>
