@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AIrena | Pac-Man</title>
+    <link rel="stylesheet" href="pacman.css">
+</head>
+<body>
+
+    <audio id="bgMusic" loop preload="auto">
+        <source src="pacman.mp3" type="audio/mpeg">
+    </audio>
+
+    <button id="muteBtn" class="mute-btn" onclick="toggleMusic()">
+        <svg id="audioIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+        </svg>
+    </button>
+
+    <canvas id="particles"></canvas>
+
+    <div class="topbar">
+        <button id="backBtn" class="back" onclick="goBack()">← Back</button>
+    </div>
+
+    <h1 class="titleGlow">Pac-Man</h1>
+
+    <div id="menuPanel" class="panel active">
+        <p class="sub">Neon Arcade Survival</p>
+        <button class="modeBtn" id="rulesBtn">How to Play</button>
+        <button class="modeBtn" id="startBtn">Start Game</button>
+    </div>
+
+    <div id="gameScreen" class="screen">
+        <div class="game-layout">
+            <div class="board-container">
+                <canvas id="gameCanvas" width="600" height="600"></canvas>
+            </div>
+
+            <div class="side-panel">
+                <div class="info-box">
+                    <span>Score</span>
+                    <div id="scoreVal">0</div>
+                </div>
+                <div class="info-box">
+                    <span>Lives</span>
+                    <div id="livesVal">3</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mobile-controls">
+            <div class="ctrl-btn" id="btnUp" style="grid-column: 2; grid-row: 1;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="18 15 12 9 6 15"></polyline>
+                </svg>
+            </div>
+            <div class="ctrl-btn" id="btnLeft" style="grid-column: 1; grid-row: 2;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </div>
+            <div class="ctrl-btn" id="btnDown" style="grid-column: 2; grid-row: 2;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </div>
+            <div class="ctrl-btn" id="btnRight" style="grid-column: 3; grid-row: 2;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <div id="rulesPopup" class="popup hidden">
+        <div class="popupCard">
+            <h2>How to Play</h2>
+            <p style="text-align: left; font-size: 0.95rem;">
+                • <strong>Desktop:</strong> Use Arrow Keys or WASD to move.<br><br>
+                • <strong>Mobile:</strong> Use the on-screen D-Pad.<br><br>
+                • Eat all the pellets to win.<br>
+                • Eat the <strong>Large Power Pellets</strong> to turn ghosts vulnerable. Eaten ghosts respawn after 3 seconds!
+            </p>
+            <button id="rulesOkBtn">Got it!</button>
+        </div>
+    </div>
+
+    <div id="gameOverPopup" class="popup hidden">
+        <div class="popupCard">
+            <h2 id="endMessage">Game Over</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 5px;">Final Score</p>
+            <h1 id="finalScore" style="font-size: 3rem; margin-bottom: 15px; color: white;">0</h1>
+            <button id="playAgainBtn">Play Again</button>
+            <button id="menuReturnBtn" class="outline">Main Menu</button>
+        </div>
+    </div>
+
+    <script src="pacman.js"></script>
+</body>
+</html>

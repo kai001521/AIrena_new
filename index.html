@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>AIrena</title>
+  <link rel="icon" type="image/png" href="AIrenaLogo.png">
+  <link rel="stylesheet" href="AIrena.css">
+</head>
+<body class="page-enter">
+
+  <div id="loader" class="loader-overlay">
+    <div class="hub-loader">
+      <div class="hl-box blue"></div>
+      <div class="hl-box green"></div>
+      <div class="hl-box red"></div>
+      <div class="hl-box violet"></div>
+    </div>
+  </div>
+
+  <audio id="bgMusic" loop preload="auto" autoplay>
+    <source src="AIrean.mp3" type="audio/mpeg">
+  </audio>
+  
+  <div class="top-actions">
+    <button id="loginBtn" onclick="openLogin()" class="login-btn">Log In</button>
+    
+    <button id="muteBtn" onclick="toggleMusic()" class="mute-btn">
+      <svg class="icon-unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+      </svg>
+      <svg class="icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+        <line x1="23" y1="9" x2="17" y2="15"></line>
+        <line x1="17" y1="9" x2="23" y2="15"></line>
+      </svg>
+    </button>
+  </div>
+
+  <div class="glow"></div>
+  <canvas id="particles"></canvas>
+
+  <div class="container">
+    <h1 class="title">
+      AIrena
+      <span class="subtitle">The Ultimate Strategy Arena</span>
+    </h1>
+
+    <div class="games">
+      <div class="card blue" onclick="opentictactoe()">
+        <h2>Tic Tac Toe</h2>
+        <p>Strategic AI board game</p>
+      </div>
+      <div class="card green" onclick="openMemory()">
+        <h2>Memory Card</h2>
+        <p>Test your recall ability</p>
+      </div>
+      <div class="card red" onclick="openCheckers()">
+        <h2>Checkers</h2>
+        <p>Classic strategy game</p>
+      </div>
+      <div class="card violet" onclick="openDots()">
+        <h2>Dots & Boxes</h2>
+        <p>Strategy grid capture game</p>
+      </div>
+      <div class="card yellow" onclick="openTetris()">
+        <h2>Tetris</h2>
+        <p>Classic block puzzle</p>
+      </div>
+      <div class="card cyan" onclick="openPacman()">
+        <h2>Pac-Man</h2>
+        <p>Neon arcade survival</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="AIrena.js"></script>
+  <div id="transition"></div>
+</body>
+</html>

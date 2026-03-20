@@ -1,0 +1,211 @@
+@font-face {
+  font-family: "GodOfWar";
+  src: url("GodOfWar.ttf");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Segoe UI, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: #000000;
+  overflow-x: hidden;
+  color: white;
+}
+
+/* ===== CUSTOM HUB LOADER ===== */
+.loader-overlay {
+  position: fixed;
+  inset: 0;
+  background: #000000;
+  z-index: 99999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+.loader-overlay.fade-out {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.hub-loader {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  animation: spinHub 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.hl-box {
+  width: 25px;
+  height: 25px;
+  border-radius: 6px;
+  animation: pulseHub 1s ease-in-out infinite alternate;
+}
+
+.hl-box.blue { background: #00e5ff; box-shadow: 0 0 15px #00e5ff; }
+.hl-box.green { background: #22c55e; box-shadow: 0 0 15px #22c55e; animation-delay: 0.25s; }
+.hl-box.red { background: #ff3a3a; box-shadow: 0 0 15px #ff3a3a; animation-delay: 0.75s; }
+.hl-box.violet { background: #a855f7; box-shadow: 0 0 15px #a855f7; animation-delay: 0.5s; }
+
+@keyframes spinHub {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes pulseHub {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(0.6); opacity: 0.4; }
+}
+
+canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.title {
+  font-family: "GodOfWar", Segoe UI, sans-serif;
+  font-size: clamp(2.5rem, 8vw, 4.6rem);
+  letter-spacing: 4px;
+  margin-bottom: 50px;
+  color: white;
+  text-shadow: 0 0 12px rgba(255,255,255,.4), 0 0 40px rgba(0,140,255,.35), 0 0 80px rgba(150,0,255,.25);
+}
+
+.subtitle {
+  display: block;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  margin-top: 8px;
+  color: #bbb;
+}
+
+.games {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.card {
+  padding: 30px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.15);
+  backdrop-filter: blur(12px);
+  transition: 0.35s;
+  box-shadow: 0 0 18px rgba(255,255,255,.05);
+  touch-action: manipulation;
+}
+
+.card h2 { font-size: 1.4rem; margin-bottom: 8px; }
+.card p { opacity: 0.75; font-size: 0.9rem; }
+
+/* Desktop hover effect */
+@media (hover: hover) {
+  .card:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 0 30px rgba(255,255,255,.15);
+  }
+}
+
+/* ===== TOP RIGHT NAVIGATION FLEXBOX ===== */
+.top-actions {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 100;
+}
+
+/* Mute Button */
+.mute-btn {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  transition: 0.3s;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  padding: 0;
+}
+
+.mute-btn:hover { background: rgba(255, 255, 255, 0.2); transform: scale(1.1); }
+.mute-btn:active { transform: scale(0.95); }
+
+/* SVG Icon Styling inside Mute Button */
+.mute-btn svg { width: 20px; height: 20px; transition: 0.2s; }
+.icon-muted { display: none; }
+.mute-btn.muted .icon-unmuted { display: none; }
+.mute-btn.muted .icon-muted { display: block; stroke: #ff4a4a; }
+
+/* Login Button - Restored to Theme Match */
+.login-btn {
+  padding: 0 20px;
+  height: 45px;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.1); /* Frosted Glass */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  font-family: Segoe UI, sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: 0.3s;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-btn:hover { 
+  background: rgba(255, 255, 255, 0.2); 
+  transform: translateY(-2px) scale(1.05); 
+}
+.login-btn:active { transform: scale(0.95); }
+
+/* Responsive adjustments */
+@media(max-width: 600px) {
+  /* Added more top padding so the title doesn't bump into the top buttons */
+  .container { padding: 85px 15px 40px 15px; } 
+  .games { grid-template-columns: 1fr; gap: 16px; }
+  .title { margin-bottom: 30px; font-size: 2.2rem; }
+  
+  /* Flexbox makes mobile alignment automatic */
+  .top-actions { top: 15px; right: 15px; gap: 10px; }
+  .mute-btn { width: 40px; height: 40px; }
+  .mute-btn svg { width: 18px; height: 18px; }
+  
+  .login-btn { 
+    height: 40px; 
+    padding: 0 16px; 
+    font-size: 13px; 
+    border-radius: 20px; 
+  }
+}
