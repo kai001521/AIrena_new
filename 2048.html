@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>2048</title>
+    <link rel="stylesheet" href="2048.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <audio id="bgMusic" loop preload="auto" autoplay>
+        <source src="2048.mp3" type="audio/mpeg">
+    </audio>
+
+    <button id="muteBtn" class="mute-btn" onclick="toggleMusic()">
+        <svg class="icon-unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+        </svg>
+        <svg class="icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <line x1="23" y1="9" x2="17" y2="15"></line>
+            <line x1="17" y1="9" x2="23" y2="15"></line>
+        </svg>
+    </button>
+
+    <canvas id="bgParticles"></canvas>
+
+    <div class="topbar">
+        <button id="backBtn" class="back" onclick="goBack()">← Back</button>
+    </div>
+
+    <h1 class="title">2048</h1>
+
+    <div id="screenStart" class="card">
+        <h3>Welcome to 2048</h3>
+        <button onclick="show('screenGame'); startGame();">Play Game</button>
+        <button class="rules-btn" onclick="showRules()">How to Play</button>
+    </div>
+
+    <div id="screenGame" class="card hidden">
+        <div class="gameBox">
+            <div class="scoreBoard">
+                <div class="playerCard">
+                    <span>SCORE</span>
+                    <span id="score" class="scoreNum">0</span>
+                </div>
+                <div class="playerCard">
+                    <span>BEST</span>
+                    <span id="best" class="scoreNum">0</span>
+                </div>
+            </div>
+
+            <div id="boardWrap">
+                <div id="board"></div>
+            </div>
+
+            <button class="restart" onclick="startGame()">Restart</button>
+        </div>
+    </div>
+
+    <div id="rulesPopup" class="popup-backdrop">
+        <div class="popup-card">
+            <h3 class="popup-title">How to Play</h3>
+            <ul class="rules-list">
+                <li>Swipe (mobile) or use <b>Arrow Keys</b> (desktop) to move tiles.</li>
+                <li>Tiles with the same number merge into one when they touch.</li>
+                <li>Add them up to reach the elusive <b>2048</b> tile!</li>
+                <li>The game ends when the board fills up and no more moves can be made.</li>
+            </ul>
+            <button class="rules-got-it" onclick="hideRules()">Got it!</button>
+        </div>
+    </div>
+
+    <div id="gameOverPopup" class="popup-backdrop">
+        <div class="popup-card" style="min-height: 180px; justify-content: center;">
+            <h2 class="popup-title" style="font-size: 28px; margin-bottom: 20px !important;">Game Over!</h2>
+            <button class="restart" onclick="hideGameOver(); startGame();">Try Again</button>
+        </div>
+    </div>
+
+    <script src="2048.js"></script>
+</body>
+
+</html>
